@@ -1,0 +1,23 @@
+# vi: set ft=ruby :
+
+ENV['VAGRANT_NO_PARALLEL'] = 'yes'
+
+Vagrant.configure(2) do |config|
+
+  config.vm.define "kubserver" do |kubserver|
+    kubserver.vm.box = "centos/7"
+    kubserver.vm.hostname = "kubserver.eduami.org"
+    kubserver.vm.network "private_network", ip: "192.168.50.25"
+    #kubserver.vm.network "forwarded_port", guest: 8080, host: 8080
+    #kubserver.vm.network "forwarded_port", guest: 8761, host: 8761
+    kubserver.vm.network "forwarded_port", guest: 5672, host: 5672
+    kubserver.vm.network "forwarded_port", guest: 15672, host: 15672
+    kubserver.vm.network "forwarded_port", guest: 9411, host: 9411
+    kubserver.vm.provision "shell", path: "startup-kubserver.sh"
+    kubserver.vm.provider "virtualbox" do |vb|
+      vb.name = "kubserver"
+      vb.memory = 4024
+      vb.cpus = 4
+    end
+  end
+end
