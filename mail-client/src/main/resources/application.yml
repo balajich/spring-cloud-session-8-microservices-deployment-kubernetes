@@ -1,6 +1,6 @@
 spring:
   application:
-    name: email-api
+    name: mail-client
   cloud:
     stream:
       bindings:

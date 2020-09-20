@@ -107,13 +107,19 @@ gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cl
 EOF
 yum install -y kubectl
 
+# Installing conntrack
+echo "[TASK 18] Install conntrack"
+yum install -y conntrack
+
+
 # Installing minikube
-echo "[TASK 18] Install kubectl binary with curl on Linux"
+echo "[TASK 19] Install kubectl binary with curl on Linux"
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
   && chmod +x minikube
 mkdir -p /usr/local/bin/
 install minikube /usr/local/bin/
 
+
 # Start minikube with out hypervisor
-echo "[TASK 19] Start minikube with out hypervisor"
+echo "[TASK 20] Start minikube with out hypervisor"
 minikube start --driver=none

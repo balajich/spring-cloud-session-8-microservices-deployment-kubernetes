@@ -16,7 +16,7 @@ Vagrant.configure(2) do |config|
     kubernetes.vm.provision "shell", path: "startup-kubernetes.sh"
     kubernetes.vm.provider "virtualbox" do |vb|
       vb.name = "kubernetes"
-      vb.memory = 4024
+      vb.memory = 14024
       vb.cpus = 4
     end
   end
